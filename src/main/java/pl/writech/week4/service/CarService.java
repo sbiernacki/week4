@@ -11,8 +11,6 @@ public interface CarService {
 
     Optional<Car> getCarById(long id);
 
-    Optional<Car> getCarByColor(String color);
-
     boolean isModifiedCar(Car car);
 
     boolean isRemovedCar(long id);

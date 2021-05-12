@@ -26,12 +26,6 @@ public class CarServiceImpl implements CarService {
                 .findFirst();
     }
 
-    public Optional<Car> getCarByColor(String color) {
-        return cars.stream()
-                .filter(car -> car.getColor().equalsIgnoreCase(color))
-                .findFirst();
-    }
-
     public boolean isModifiedCar(Car car) {
         Optional<Car> optionalCar = getCarById(car.getId());
         if (optionalCar.isPresent()) {

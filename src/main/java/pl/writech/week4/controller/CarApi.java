@@ -40,14 +40,6 @@ public class CarApi {
         }
     }
 
-    @GetMapping("/color/{color}")
-    public ResponseEntity<Car> getCarByColor(@PathVariable String color) {
-        Optional<Car> optionalCar = carService.getCarByColor(color);
-
-        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
     @PostMapping("/add")
     public String addCar(@ModelAttribute Car car) {
         boolean isAdded = carService.isAddedCar(car);
