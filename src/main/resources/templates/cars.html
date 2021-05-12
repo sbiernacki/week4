@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CAR-API</title>
+</head>
+<body>
+<h1>Lista pojazdów</h1>
+<p/>
+<div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <td>Id</td>
+                <td>Mark</td>
+                <td>Model</td>
+                <td>Color</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car: ${cars}">
+                <td th:text="${car.getId()}">Id</td>
+                <td th:text="${car.getMark()}">Mark</td>
+                <td th:text="${car.getModel()}">Model</td>
+                <td th:text="${car.getColor()}">Color</td>
+                <td>
+                    <form action="#" th:action="@{'/delete/{id}'(id=${car.getId()})}" th:method="delete">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button id="submitDelete" type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="#" th:action="@{'/cars/{id}'(id=${car.id})}" th:method="get">
+                        <button id="submitEdit" type="submit">Edit</button>
+                    </form>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <form method="post" th:action="@{/add}" th:object="${car}">
+            <p>Mark: <input th:field="*{mark}" type="text"></p>
+            <p>Model: <input th:field="*{model}" type="text"></p>
+            <p>Color: <input th:field="*{color}" type="text"></p>
+            <p><input type="submit" value="Add new car"></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>
